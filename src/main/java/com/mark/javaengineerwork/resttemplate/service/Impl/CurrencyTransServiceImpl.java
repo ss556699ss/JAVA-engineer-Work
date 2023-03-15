@@ -70,4 +70,9 @@ public class CurrencyTransServiceImpl implements CurrencyTransService {
     public Currency createBpi(Currency currency) {
         return currencyTransDao.createBpi(currency);
     }
+
+    @Override
+    public void deleteBpi(String currencyId) {
+         currencyTransDao.deleteBpi(currencyId);
+    }
 }

@@ -72,4 +72,11 @@ public class CurrencyTransController {
         Currency Bpi = currencyTransService.createBpi(currency);
         return ResponseEntity.status(HttpStatus.OK).body(Bpi);
     }
+
+    //刪除幣別
+    @DeleteMapping("/deleteBpi/{currencyId}")
+    public String deleteBpi(@PathVariable  String currencyId) {
+        currencyTransService.deleteBpi(currencyId);
+        return "刪除成功";
+    }
 }
