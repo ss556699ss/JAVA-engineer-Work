@@ -53,15 +53,21 @@ public class CurrencyTransServiceImpl implements CurrencyTransService {
     }
 
 
-
+    //查詢幣別
     @Override
     public Currency selectBpi(String currency) {
 
         return  currencyTransDao.selectBpi(currency);
     }
 
+    //更新幣別
     @Override
     public Currency updateBpi(Currency currency) {
         return currencyTransDao.updateBpi(currency);
+    }
+
+    @Override
+    public Currency createBpi(Currency currency) {
+        return currencyTransDao.createBpi(currency);
     }
 }

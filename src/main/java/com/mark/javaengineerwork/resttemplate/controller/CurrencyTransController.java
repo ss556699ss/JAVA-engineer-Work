@@ -65,4 +65,11 @@ public class CurrencyTransController {
         Currency Bpi = currencyTransService.updateBpi(currency);
         return ResponseEntity.status(HttpStatus.OK).body(Bpi);
     }
+
+    //新增幣別
+    @PostMapping("/createBpi")
+    public ResponseEntity<Currency> createBpi(@RequestBody  Currency currency) {
+        Currency Bpi = currencyTransService.createBpi(currency);
+        return ResponseEntity.status(HttpStatus.OK).body(Bpi);
+    }
 }

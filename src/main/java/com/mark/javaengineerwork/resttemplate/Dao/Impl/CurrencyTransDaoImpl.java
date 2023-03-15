@@ -15,15 +15,22 @@ public class CurrencyTransDaoImpl implements CurrencyTransDao {
     CurrencyTransRepository currencyTransRepository;
 
 
+    //查詢幣別
     @Override
     public Currency selectBpi(String currency) {
 
         return  currencyTransRepository.findById(currency).orElse(null);
     }
 
+    //更新幣別
     @Override
     public Currency updateBpi(Currency currency) {
 
+        return currencyTransRepository.save(currency);
+    }
+
+    @Override
+    public Currency createBpi(Currency currency) {
         return currencyTransRepository.save(currency);
     }
 }
