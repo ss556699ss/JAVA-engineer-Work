@@ -14,6 +14,9 @@ public interface CurrencyTransService {
     CoinDesk getForCoinDesk();
     Time getCurrencyTime();
     Map<String, Bpi> getCurrencyBpi();
-    Currency selectBpi(Currency currency);
+    Currency selectBpi(String currency);
+
+    //更新幣別
+    Currency updateBpi(Currency currency);
 
 }

@@ -31,28 +31,38 @@ public class CurrencyTransController {
         return  ResponseEntity.status(HttpStatus.OK).body(coinDesk);
     }
 
-    //更新時間
+    //更新 coinDesk 的 API時間
     @GetMapping("/getCurrencyTime")
     public ResponseEntity<Time> getCurrencyTime(){
         Time time = currencyTransService.getCurrencyTime();
         return ResponseEntity.status(HttpStatus.OK).body(time);
     }
 
-    //取得幣別
+    //取得 coinDesk 的 API幣別
     @GetMapping("/getCurrencyBpi")
     public  ResponseEntity< Map<String, Bpi>> getCurrencyBpi(){
         Map<String, Bpi> currencyBpi = currencyTransService.getCurrencyBpi();
         return ResponseEntity.status(HttpStatus.OK).body(currencyBpi);
     }
 
-    @PostMapping("/selectBpi")
-    public ResponseEntity<Currency> selectBpi(@RequestBody  Currency currency) {
-        Currency Bpi = currencyTransService.selectBpi(currency);
+    //查詢幣別
+    @GetMapping("/selectBpi/{en}")
+    public ResponseEntity<Currency> selectBpi(@PathVariable  String en) {
+        Currency Bpi = currencyTransService.selectBpi(en);
         if(Bpi !=null){
             return ResponseEntity.status(HttpStatus.OK).body(Bpi);
         }
         else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+    }
+
+    //更新幣別
+    @PutMapping("/updateBpi/{en}")
+    public ResponseEntity<Currency> updateBpi(@PathVariable  String en,
+                                              @RequestBody Currency currency) {
+        currency.setEn(en);
+        Currency Bpi = currencyTransService.updateBpi(currency);
+        return ResponseEntity.status(HttpStatus.OK).body(Bpi);
     }
 }
