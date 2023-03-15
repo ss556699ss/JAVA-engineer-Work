@@ -14,7 +14,7 @@ public interface CurrencyTransService {
     //呼叫外部API功能
     CoinDesk getForCoinDesk();
     //更新 coinDesk 的 API時間
-    Time getCurrencyTime();
+    Time getCoinDeskTime();
     //取得 coinDesk 的 API幣別
     Map<String, Bpi> getCurrencyBpi();
     //查詢幣別

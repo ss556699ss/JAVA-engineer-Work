@@ -38,7 +38,7 @@ public class CurrencyTransServiceImpl implements CurrencyTransService {
 
     //取得時間
     @Override
-    public Time getCurrencyTime() {
+    public Time getCoinDeskTime() {
         Time time = new Time();
         OffsetDateTime odt = OffsetDateTime.parse(getForCoinDesk().getTime().getUpdatedISO());
         DateTimeFormatter sdf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

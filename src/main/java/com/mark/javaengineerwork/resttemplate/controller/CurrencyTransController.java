@@ -24,7 +24,7 @@ public class CurrencyTransController {
     @Autowired
     public  CurrencyTransService currencyTransService;
 
-    //取得json
+    //取得CoinDes
     @GetMapping("/getForCoinDesk")
     public  ResponseEntity<CoinDesk> getForCoinDesk(){
         CoinDesk coinDesk = currencyTransService.getForCoinDesk();
@@ -32,9 +32,9 @@ public class CurrencyTransController {
     }
 
     //更新 coinDesk 的 API時間
-    @GetMapping("/getCurrencyTime")
-    public ResponseEntity<Time> getCurrencyTime(){
-        Time time = currencyTransService.getCurrencyTime();
+    @GetMapping("/getCoinDeskTime")
+    public ResponseEntity<Time> getCoinDeskTime(){
+        Time time = currencyTransService.getCoinDeskTime();
         return ResponseEntity.status(HttpStatus.OK).body(time);
     }
 
