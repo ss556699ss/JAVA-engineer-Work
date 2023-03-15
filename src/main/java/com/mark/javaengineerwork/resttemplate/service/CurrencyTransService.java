@@ -1,5 +1,6 @@
 package com.mark.javaengineerwork.resttemplate.service;
 
+import com.mark.javaengineerwork.resttemplate.entity.Currency;
 import com.mark.javaengineerwork.resttemplate.model.CoinDesk;
 import com.mark.javaengineerwork.resttemplate.model.Time;
 import com.mark.javaengineerwork.resttemplate.model.bpi.Bpi;
@@ -13,5 +14,6 @@ public interface CurrencyTransService {
     CoinDesk getForCoinDesk();
     Time getCurrencyTime();
     Map<String, Bpi> getCurrencyBpi();
+    Currency selectBpi(Currency currency);
 
 }

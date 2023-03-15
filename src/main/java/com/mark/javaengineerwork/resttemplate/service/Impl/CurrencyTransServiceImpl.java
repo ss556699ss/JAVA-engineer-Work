@@ -1,23 +1,28 @@
 package com.mark.javaengineerwork.resttemplate.service.Impl;
 
+import com.mark.javaengineerwork.resttemplate.Dao.CurrencyTransDao;
 import com.mark.javaengineerwork.resttemplate.model.CoinDesk;
 import com.mark.javaengineerwork.resttemplate.model.Time;
 import com.mark.javaengineerwork.resttemplate.model.bpi.Bpi;
 import com.mark.javaengineerwork.resttemplate.service.CurrencyTransService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
+import com.mark.javaengineerwork.resttemplate.entity.Currency;
 import java.text.SimpleDateFormat;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Map;
 
+
 @Service
 public class CurrencyTransServiceImpl implements CurrencyTransService {
 
+    @Autowired
+    CurrencyTransDao currencyTransDao;
     @Override
     public CoinDesk getForCoinDesk() {
         RestTemplate restTemplate = new RestTemplate();
@@ -45,5 +50,13 @@ public class CurrencyTransServiceImpl implements CurrencyTransService {
     @Override
     public  Map<String, Bpi> getCurrencyBpi() {
         return  getForCoinDesk().getBpi();
+    }
+
+
+
+    @Override
+    public Currency selectBpi(Currency currency) {
+
+        return  currencyTransDao.selectBpi(currency);
     }
 }

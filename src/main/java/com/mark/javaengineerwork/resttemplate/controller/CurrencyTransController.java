@@ -1,5 +1,6 @@
 package com.mark.javaengineerwork.resttemplate.controller;
 
+import com.mark.javaengineerwork.resttemplate.entity.Currency;
 import com.mark.javaengineerwork.resttemplate.model.CoinDesk;
 import com.mark.javaengineerwork.resttemplate.model.Time;
 import com.mark.javaengineerwork.resttemplate.model.bpi.Bpi;
@@ -9,9 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -43,5 +43,16 @@ public class CurrencyTransController {
     public  ResponseEntity< Map<String, Bpi>> getCurrencyBpi(){
         Map<String, Bpi> currencyBpi = currencyTransService.getCurrencyBpi();
         return ResponseEntity.status(HttpStatus.OK).body(currencyBpi);
+    }
+
+    @PostMapping("/selectBpi")
+    public ResponseEntity<Currency> selectBpi(@RequestBody  Currency currency) {
+        Currency Bpi = currencyTransService.selectBpi(currency);
+        if(Bpi !=null){
+            return ResponseEntity.status(HttpStatus.OK).body(Bpi);
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }
