@@ -111,4 +111,15 @@ public class CurrencyTransControllerTest {
                 .andReturn().getResponse().getContentAsString( StandardCharsets.UTF_8 );
     }
 
+    //刪除幣別
+    @Test
+    @Transactional
+    public void deleteBpi() throws  Exception{
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .delete("/deleteBpi/{currencyId}","GBP");
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().is(200));
+
+    }
 }
