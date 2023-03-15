@@ -33,4 +33,9 @@ public class CurrencyTransDaoImpl implements CurrencyTransDao {
     public Currency createBpi(Currency currency) {
         return currencyTransRepository.save(currency);
     }
+
+    @Override
+    public void deleteBpi(String currencyId) {
+        currencyTransRepository.deleteById(currencyId);
+    }
 }

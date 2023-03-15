@@ -23,5 +23,7 @@ public interface CurrencyTransService {
     Currency updateBpi(Currency currency);
     //新增幣別
     Currency createBpi(Currency currency);
+    //刪除幣別
+    void deleteBpi(String currencyId);
 
 }
