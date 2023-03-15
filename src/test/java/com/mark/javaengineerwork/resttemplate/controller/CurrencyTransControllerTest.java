@@ -9,8 +9,13 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.nio.charset.StandardCharsets;
+
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -43,6 +48,19 @@ public class CurrencyTransControllerTest {
                 .andReturn();
         String body = mvcResult.getResponse().getContentAsString();
         System.out.println(" coinDesk 資料轉換 API內容:" +body);
+    }
+
+    //查詢商品
+    @Test
+    public void selectBpi() throws Exception{
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get("/selectBpi/{en}","USD");
+
+        mockMvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(status().is(200))
+                .andExpect(jsonPath("$.zh",equalTo("美元")))
+                .andReturn().getResponse().getContentAsString( StandardCharsets.UTF_8 );;
     }
 
 
