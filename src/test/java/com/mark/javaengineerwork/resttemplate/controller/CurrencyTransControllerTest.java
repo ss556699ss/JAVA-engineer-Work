@@ -89,8 +89,26 @@ public class CurrencyTransControllerTest {
                 .andExpect(jsonPath("$.en",equalTo("TWD")))
                 .andExpect(jsonPath("$.zh",equalTo("台幣")))
                 .andReturn().getResponse().getContentAsString( StandardCharsets.UTF_8 );
-
     }
 
+    //更新幣別
+    @Test
+    @Transactional
+    public void updateBpi() throws  Exception{
+        Currency currency = new Currency();
+        currency.setZh("披索");
+        String json = objectMapper.writeValueAsString(currency);
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .put("/updateBpi/{en}","USD")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json);
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().is(200))
+                .andExpect(jsonPath("$.en",equalTo("USD")))
+                .andExpect(jsonPath("$.zh",equalTo("披索")))
+                .andReturn().getResponse().getContentAsString( StandardCharsets.UTF_8 );
+    }
 
 }
